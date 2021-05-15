@@ -44,6 +44,11 @@ class TeamsFragment : Fragment() {
         subscribeUi(teamsAdapter)
     }
 
+    override fun onDestroyView() {
+        teamsJob?.cancel()
+        super.onDestroyView()
+    }
+
     private fun subscribeUi(adapter: TeamsAdapter) {
         teamsJob?.cancel()
         teamsJob = lifecycleScope.launch {
@@ -51,9 +56,5 @@ class TeamsFragment : Fragment() {
                 adapter.submitList(teams)
             }
         }
-    }
-
-    companion object {
-        const val TAG = "TeamsFragment"
     }
 }

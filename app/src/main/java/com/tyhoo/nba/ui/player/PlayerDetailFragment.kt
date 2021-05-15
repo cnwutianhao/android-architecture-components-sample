@@ -47,11 +47,7 @@ class PlayerDetailFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         playerDetailJob?.cancel()
-    }
-
-    companion object {
-        const val TAG = "PlayerDetailFragment"
+        super.onDestroyView()
     }
 }

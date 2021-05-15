@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import com.tyhoo.nba.base.TAG
 import com.tyhoo.nba.databinding.FragmentPlayerDetailBinding
 import com.tyhoo.nba.viewmodel.TeamDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,11 +49,7 @@ class TeamDetailFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         teamDetailJob?.cancel()
-    }
-
-    companion object {
-        const val TAG = "TeamDetailFragment"
+        super.onDestroyView()
     }
 }

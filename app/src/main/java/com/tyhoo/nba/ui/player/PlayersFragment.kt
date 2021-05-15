@@ -44,6 +44,11 @@ class PlayersFragment : Fragment() {
         subscribeUi(playersAdapter)
     }
 
+    override fun onDestroyView() {
+        playersJob?.cancel()
+        super.onDestroyView()
+    }
+
     private fun subscribeUi(adapter: PlayersAdapter) {
         playersJob?.cancel()
         playersJob = lifecycleScope.launch {
@@ -51,9 +56,5 @@ class PlayersFragment : Fragment() {
                 adapter.submitList(players)
             }
         }
-    }
-
-    companion object {
-        const val TAG = "PlayersFragment"
     }
 }

@@ -38,6 +38,11 @@ class SplashFragment : Fragment() {
         getPlayers()
     }
 
+    override fun onDestroyView() {
+        splashJob?.cancel()
+        super.onDestroyView()
+    }
+
     private fun getPlayers() {
         splashJob?.cancel()
         splashJob = lifecycleScope.launch {
@@ -55,9 +60,5 @@ class SplashFragment : Fragment() {
                 view?.findNavController()?.navigate(direction)
             }
         }
-    }
-
-    companion object {
-        const val TAG = "SplashFragment"
     }
 }
