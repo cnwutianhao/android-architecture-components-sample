@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NBA</string>
+
+    <string name="jersey_number">%s号</string>
+</resources>

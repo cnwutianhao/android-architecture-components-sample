@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="player"
+            type="com.tyhoo.nba.data.db.PlayersEntity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{clickListener}">
+
+        <ImageView
+            android:id="@+id/player_item_image"
+            android:layout_width="130dp"
+            android:layout_height="95dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop"
+            app:imageFromPlayerId="@{player.playerId}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/player_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="@{player.displayName}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/player_item_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="勒布朗 詹姆斯" />
+
+        <TextView
+            android:id="@+id/player_item_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:text="@{player.teamCity + player.teamName}"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/player_item_image"
+            app:layout_constraintTop_toBottomOf="@+id/player_item_name"
+            tools:text="洛杉矶湖人" />
+
+        <TextView
+            android:id="@+id/player_item_jerseyNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:text="@{String.format(@string/jersey_number, player.jerseyNo)}"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/player_item_image"
+            app:layout_constraintTop_toBottomOf="@+id/player_item_team"
+            tools:text="23号" />
+
+        <TextView
+            android:id="@+id/player_item_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:text="@{player.position}"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/player_item_image"
+            app:layout_constraintTop_toBottomOf="@+id/player_item_jerseyNo"
+            tools:text="前锋" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

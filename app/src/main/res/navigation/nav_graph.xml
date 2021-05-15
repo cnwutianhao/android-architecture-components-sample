@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splash_fragment">
+
+    <fragment
+        android:id="@+id/splash_fragment"
+        android:name="com.tyhoo.nba.ui.splash.SplashFragment"
+        android:label="Splash Fragment"
+        tools:layout="@layout/fragment_splash">
+
+        <action
+            android:id="@+id/action_splash_fragment_to_home_fragment"
+            app:destination="@id/home_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="com.tyhoo.nba.ui.home.HomeFragment"
+        android:label="Home Fragment"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_home_fragment_to_player_detail_fragment"
+            app:destination="@id/player_detail_fragment" />
+
+        <action
+            android:id="@+id/action_home_fragment_to_team_detail_fragment"
+            app:destination="@id/team_detail_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/player_detail_fragment"
+        android:name="com.tyhoo.nba.ui.player.PlayerDetailFragment"
+        android:label="Player Detail Fragment">
+
+        <argument
+            android:name="playerCode"
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/team_detail_fragment"
+        android:name="com.tyhoo.nba.ui.team.TeamDetailFragment"
+        android:label="Team Detail Fragment">
+
+        <argument
+            android:name="teamCode"
+            app:argType="string" />
+
+    </fragment>
+
+</navigation>

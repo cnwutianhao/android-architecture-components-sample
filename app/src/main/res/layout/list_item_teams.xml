@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="team"
+            type="com.tyhoo.nba.data.db.TeamsEntity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{clickListener}">
+
+        <ImageView
+            android:id="@+id/team_item_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:imageFromCode="@{team.code}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/team_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="@{team.city + team.name}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/team_item_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="洛杉矶湖人" />
+
+        <TextView
+            android:id="@+id/team_item_conference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:text="@{team.displayConference}"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/team_item_image"
+            app:layout_constraintTop_toBottomOf="@+id/team_item_name"
+            tools:text="西部" />
+
+        <TextView
+            android:id="@+id/team_item_division"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:text="@{team.division}"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/team_item_image"
+            app:layout_constraintTop_toBottomOf="@+id/team_item_conference"
+            tools:text="太平洋分区" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
