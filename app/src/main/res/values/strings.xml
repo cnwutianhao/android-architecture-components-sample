@@ -2,4 +2,7 @@
     <string name="app_name">NBA</string>
 
     <string name="jersey_number">%s号</string>
+
+    <string name="player_detail_jersey_number">&#160;&#160;|&#160;&#160;%s号</string>
+    <string name="player_detail_position">&#160;&#160;|&#160;&#160;%s</string>
 </resources>

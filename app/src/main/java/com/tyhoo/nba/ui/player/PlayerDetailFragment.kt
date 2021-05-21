@@ -1,7 +1,6 @@
 package com.tyhoo.nba.ui.player
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +40,7 @@ class PlayerDetailFragment : Fragment() {
         playerDetailJob?.cancel()
         playerDetailJob = lifecycleScope.launch {
             playerDetailViewModel.player(args.playerCode).observe(viewLifecycleOwner) { player ->
-                playerDetailBinding.playerProfile = player.payload.player.playerProfile
+                playerDetailBinding.player = player.payload.player
             }
         }
     }
