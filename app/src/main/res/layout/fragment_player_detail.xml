@@ -14,9 +14,11 @@
         android:id="@+id/player_detail_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/purple_200"
-        android:clipToPadding="false"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:playerDetailBackgroundFromTeamCode="@{player.teamProfile.code}"
+        tools:background="@color/black">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,7 +35,7 @@
                     android:layout_height="142.5dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_margin="16dp"
+                    android:layout_margin="8dp"
                     app:playerDetailImageFromPlayerId="@{player.playerProfile.playerId}" />
 
                 <TextView
@@ -41,8 +43,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_toEndOf="@+id/player_detail_image"
                     android:text="@{player.teamProfile.city + player.teamProfile.name}"
                     android:textColor="@color/white"
@@ -54,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_toEndOf="@+id/player_detail_team"
                     android:text="@{String.format(@string/player_detail_jersey_number,player.playerProfile.jerseyNo)}"
                     android:textColor="@color/white"
@@ -66,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_toEndOf="@+id/player_detail_jersey_no"
                     android:text="@{String.format(@string/player_detail_position,player.playerProfile.position)}"
                     android:textColor="@color/white"
@@ -78,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/player_detail_team"
-                    android:layout_marginStart="14dp"
+                    android:layout_marginStart="6dp"
                     android:layout_toEndOf="@+id/player_detail_image"
                     android:text="@{player.playerProfile.firstName}"
                     android:textColor="@color/white"
@@ -91,7 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/player_detail_first_name"
-                    android:layout_marginStart="14dp"
+                    android:layout_marginStart="6dp"
                     android:layout_toEndOf="@+id/player_detail_image"
                     android:text="@{player.playerProfile.lastName}"
                     android:textColor="@color/white"
@@ -123,6 +125,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="PPG"
+                        android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <TextView
@@ -150,6 +153,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="RPG"
+                        android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <TextView
@@ -177,6 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="APG"
+                        android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <TextView
@@ -204,6 +209,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="PIE"
+                        android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <TextView
