@@ -19,10 +19,11 @@ class SplashRepository @Inject constructor(private val service: NBAService) {
             for (i in playersResponse.indices) {
                 players.add(
                     PlayersEntity(
-                        playersResponse[i].playerProfile.playerId,
+                        i,
                         playersResponse[i].playerProfile.code,
                         playersResponse[i].playerProfile.displayName,
                         playersResponse[i].playerProfile.jerseyNo,
+                        playersResponse[i].playerProfile.playerId,
                         playersResponse[i].playerProfile.position,
                         playersResponse[i].teamProfile.city,
                         playersResponse[i].teamProfile.name

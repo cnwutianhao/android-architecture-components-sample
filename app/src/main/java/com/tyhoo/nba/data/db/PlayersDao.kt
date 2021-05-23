@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PlayersDao {
-    @Query("SELECT * FROM players")
+    @Query("SELECT * FROM players ORDER BY id")
     fun getPlayers(): Flow<List<PlayersEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
