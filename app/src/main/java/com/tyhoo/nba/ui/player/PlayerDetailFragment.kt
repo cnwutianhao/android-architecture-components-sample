@@ -40,7 +40,7 @@ class PlayerDetailFragment : Fragment() {
         playerDetailJob?.cancel()
         playerDetailJob = lifecycleScope.launch {
             playerDetailViewModel.player(args.playerCode).observe(viewLifecycleOwner) { player ->
-                playerDetailBinding.player = player.payload.player
+                playerDetailBinding.payload = player.payload
             }
         }
     }

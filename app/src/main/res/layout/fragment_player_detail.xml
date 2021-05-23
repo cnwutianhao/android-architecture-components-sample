@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="player"
-            type="com.tyhoo.nba.data.player.PlayerPlayerResponse" />
+            name="payload"
+            type="com.tyhoo.nba.data.player.PlayerPayloadResponse" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -17,7 +17,7 @@
         android:clipToPadding="true"
         android:fitsSystemWindows="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:playerDetailBackgroundFromTeamCode="@{player.teamProfile.code}"
+        app:playerDetailBackgroundFromTeamCode="@{payload.player.teamProfile.code}"
         tools:background="@color/black">
 
         <LinearLayout
@@ -25,6 +25,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <!-- Basic -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -35,8 +36,9 @@
                     android:layout_height="142.5dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_margin="8dp"
-                    app:playerDetailImageFromPlayerId="@{player.playerProfile.playerId}" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:playerDetailImageFromPlayerId="@{payload.player.playerProfile.playerId}" />
 
                 <TextView
                     android:id="@+id/player_detail_team"
@@ -46,7 +48,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@+id/player_detail_image"
-                    android:text="@{player.teamProfile.city + player.teamProfile.name}"
+                    android:text="@{payload.player.teamProfile.city + payload.player.teamProfile.name}"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     tools:text="洛杉矶湖人" />
@@ -58,7 +60,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@+id/player_detail_team"
-                    android:text="@{String.format(@string/player_detail_jersey_number,player.playerProfile.jerseyNo)}"
+                    android:text="@{String.format(@string/player_detail_jersey_number,payload.player.playerProfile.jerseyNo)}"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     tools:text="  |  23号" />
@@ -70,7 +72,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@+id/player_detail_jersey_no"
-                    android:text="@{String.format(@string/player_detail_position,player.playerProfile.position)}"
+                    android:text="@{String.format(@string/player_detail_position,payload.player.playerProfile.position)}"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     tools:text="  |  前锋" />
@@ -81,8 +83,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/player_detail_team"
                     android:layout_marginStart="6dp"
+                    android:layout_marginTop="16dp"
                     android:layout_toEndOf="@+id/player_detail_image"
-                    android:text="@{player.playerProfile.firstName}"
+                    android:text="@{payload.player.playerProfile.firstName}"
                     android:textColor="@color/white"
                     android:textSize="30sp"
                     android:textStyle="bold"
@@ -95,7 +98,7 @@
                     android:layout_below="@+id/player_detail_first_name"
                     android:layout_marginStart="6dp"
                     android:layout_toEndOf="@+id/player_detail_image"
-                    android:text="@{player.playerProfile.lastName}"
+                    android:text="@{payload.player.playerProfile.lastName}"
                     android:textColor="@color/white"
                     android:textSize="26sp"
                     android:textStyle="bold"
@@ -108,6 +111,7 @@
                 android:layout_height="0.5dp"
                 android:background="@color/white" />
 
+            <!-- 分类数据1 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -131,6 +135,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(payload.leagueSeasonAverage.pointsPg)}"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         tools:text="25.0" />
@@ -159,6 +165,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(payload.leagueSeasonAverage.rebsPg)}"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         tools:text="7.7" />
@@ -187,6 +195,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(payload.leagueSeasonAverage.assistsPg)}"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         tools:text="7.8" />
@@ -215,6 +225,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(payload.leagueSeasonAverage.minsPg)}"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         tools:text="19.1" />
@@ -222,6 +234,21 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@{String.format(@string/player_detail_height_weight,payload.player.playerProfile.height,payload.player.playerProfile.weight)}"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                tools:text="身高：2.06 米，体重：113.4 公斤" />
 
             <View
                 android:layout_width="match_parent"
