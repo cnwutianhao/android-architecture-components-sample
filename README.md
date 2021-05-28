@@ -1,4 +1,4 @@
-# Android Architecture Components samples
+# Android Architecture Components Sample
 
 A NBA app illustrating Android development best practices with Android Jetpack.
 
