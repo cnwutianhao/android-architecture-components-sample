@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/open_sans_regular"
-            android:text="@{String.format(@string/jersey_number, player.jerseyNo)}"
+            android:text="@{String.format(@string/players_jersey_number, player.jerseyNo)}"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/player_item_image"
             app:layout_constraintTop_toBottomOf="@+id/player_item_team"
