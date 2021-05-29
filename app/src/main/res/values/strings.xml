@@ -6,4 +6,7 @@
     <string name="player_detail_jersey_number">&#160;&#160;|&#160;&#160;%s号</string>
     <string name="player_detail_position">&#160;&#160;|&#160;&#160;%s</string>
     <string name="player_detail_height_weight">身高：%s 米，体重：%s</string>
+
+    <string name="team_detail_win_loss">胜 %s 败 %s</string>
+    <string name="team_detail_conference_rank">%s第 %s 名</string>
 </resources>
