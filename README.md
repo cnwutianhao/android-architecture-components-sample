@@ -5,7 +5,7 @@ A NBA app illustrating Android development best practices with Android Jetpack.
 ---
 
 ### Screenshots
-![Players](https://github.com/cnwutianhao/android-architecture-components-sample/blob/main/screenshot/players.png)![Teams](https://github.com/cnwutianhao/android-architecture-components-sample/blob/main/screenshot/teams.png)![Player](https://github.com/cnwutianhao/android-architecture-components-sample/blob/main/screenshot/player.png)![Team](https://github.com/cnwutianhao/android-architecture-components-sample/blob/main/screenshot/team.png)
+<img src="https://github.com/cnwutianhao/android-architecture-components-sample/blob/main/screenshot/players.png" width="200"/>&nbsp;<img src="https://github.com/cnwutianhao/android-architecture-components-sample/blob/main/screenshot/teams.png" width="200"/>&nbsp;<img src="https://github.com/cnwutianhao/android-architecture-components-sample/blob/main/screenshot/player.png" width="200"/>&nbsp;<img src="https://github.com/cnwutianhao/android-architecture-components-sample/blob/main/screenshot/team.png" width="200"/>
 
 ---
 
