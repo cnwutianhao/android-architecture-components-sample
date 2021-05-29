@@ -4,6 +4,11 @@ A NBA app illustrating Android development best practices with Android Jetpack.
 
 ---
 
+### Screenshots
+![Players](https://github.com/cnwutianhao/android-architecture-components-sample/blob/main/screenshot/players.png)![Teams](https://github.com/cnwutianhao/android-architecture-components-sample/blob/main/screenshot/teams.png)![Player](https://github.com/cnwutianhao/android-architecture-components-sample/blob/main/screenshot/player.png)![Team](https://github.com/cnwutianhao/android-architecture-components-sample/blob/main/screenshot/team.png)
+
+---
+
 ### Libraries Used
 + Foundation - Components for core system capabilities, Kotlin extensions.
   + AppCompat - Degrade gracefully on older versions of Android.
