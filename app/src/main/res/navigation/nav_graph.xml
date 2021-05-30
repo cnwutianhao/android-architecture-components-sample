@@ -13,7 +13,9 @@
 
         <action
             android:id="@+id/action_splash_fragment_to_home_fragment"
-            app:destination="@id/home_fragment" />
+            app:destination="@id/home_fragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="false" />
 
     </fragment>
 
@@ -36,7 +38,8 @@
     <fragment
         android:id="@+id/player_detail_fragment"
         android:name="com.tyhoo.nba.ui.player.PlayerDetailFragment"
-        android:label="Player Detail Fragment">
+        android:label="Player Detail Fragment"
+        tools:layout="@layout/fragment_player_detail">
 
         <argument
             android:name="playerCode"
@@ -47,7 +50,8 @@
     <fragment
         android:id="@+id/team_detail_fragment"
         android:name="com.tyhoo.nba.ui.team.TeamDetailFragment"
-        android:label="Team Detail Fragment">
+        android:label="Team Detail Fragment"
+        tools:layout="@layout/fragment_team_detail">
 
         <argument
             android:name="teamCode"
