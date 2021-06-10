@@ -4,5 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class PlayerPlayerResponse(
     @field:SerializedName("playerProfile") val playerProfile: PlayerPlayerProfileResponse,
-    @field:SerializedName("teamProfile") val teamProfile: PlayerTeamProfileResponse
+    @field:SerializedName("teamProfile") val teamProfile: PlayerTeamProfileResponse,
+    @field:SerializedName("stats") val stats: PlayerStatsResponse
 )

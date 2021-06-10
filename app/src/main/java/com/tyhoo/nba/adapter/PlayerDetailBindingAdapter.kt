@@ -2,9 +2,11 @@ package com.tyhoo.nba.adapter
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.tyhoo.nba.R
+import com.tyhoo.nba.data.player.PlayerPayloadResponse
 import com.tyhoo.nba.util.GlideApp
 
 @BindingAdapter("playerDetailImageFromPlayerId")
@@ -55,5 +57,38 @@ fun bindPlayerDetailBackgroundFromTeamCode(view: View, code: String?) {
             "jazz" -> color = R.color.jazz
         }
         view.setBackgroundResource(color)
+    }
+}
+
+@BindingAdapter("app:playerDetailPointsPg")
+fun bindPlayerDetailPointsPg(view: TextView, payload: PlayerPayloadResponse?) {
+    payload?.let {
+        val teams = it.player.stats.regularSeasonStat.playerTeams
+        val currentSeasonNum = teams.size - 1
+        val currentSeasonPointsPg = teams[currentSeasonNum].statAverage.pointsPg
+
+        view.text = currentSeasonPointsPg.toString()
+    }
+}
+
+@BindingAdapter("app:playerDetailRebsPg")
+fun bindPlayerDetailRebsPg(view: TextView, payload: PlayerPayloadResponse?) {
+    payload?.let {
+        val teams = it.player.stats.regularSeasonStat.playerTeams
+        val currentSeasonNum = teams.size - 1
+        val currentSeasonRebsPg = teams[currentSeasonNum].statAverage.rebsPg
+
+        view.text = currentSeasonRebsPg.toString()
+    }
+}
+
+@BindingAdapter("app:playerDetailAssistsPg")
+fun bindPlayerDetailAssistsPg(view: TextView, payload: PlayerPayloadResponse?) {
+    payload?.let {
+        val teams = it.player.stats.regularSeasonStat.playerTeams
+        val currentSeasonNum = teams.size - 1
+        val currentSeasonAssistsPg = teams[currentSeasonNum].statAverage.assistsPg
+
+        view.text = currentSeasonAssistsPg.toString()
     }
 }

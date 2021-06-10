@@ -135,10 +135,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(payload.leagueSeasonAverage.pointsPg)}"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
+                        app:playerDetailPointsPg="@{payload}"
                         tools:text="25.0" />
 
                 </LinearLayout>
@@ -165,10 +165,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(payload.leagueSeasonAverage.rebsPg)}"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
+                        app:playerDetailRebsPg="@{payload}"
                         tools:text="7.7" />
 
                 </LinearLayout>
@@ -195,10 +195,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(payload.leagueSeasonAverage.assistsPg)}"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
+                        app:playerDetailAssistsPg="@{payload}"
                         tools:text="7.8" />
 
                 </LinearLayout>
@@ -225,11 +225,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(payload.leagueSeasonAverage.minsPg)}"
+                        android:text="N/A"
                         android:textColor="@color/white"
                         android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:text="19.1" />
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
