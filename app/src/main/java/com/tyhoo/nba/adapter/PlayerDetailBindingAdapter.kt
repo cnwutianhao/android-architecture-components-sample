@@ -92,3 +92,10 @@ fun bindPlayerDetailAssistsPg(view: TextView, payload: PlayerPayloadResponse?) {
         view.text = currentSeasonAssistsPg.toString()
     }
 }
+
+@BindingAdapter("app:playerDetailFloatFormat")
+fun bindPlayerDetailFloatFormat(view: TextView, data: Float?) {
+    data?.let {
+        view.text = String.format("%.1f", data)
+    }
+}

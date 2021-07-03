@@ -255,6 +255,18 @@
                 android:layout_height="0.5dp"
                 android:background="@color/white" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/player_season_status_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="1"
+                tools:listitem="@layout/list_item_player_season_status" />
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

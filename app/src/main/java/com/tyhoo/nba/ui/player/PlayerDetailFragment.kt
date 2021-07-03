@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import com.tyhoo.nba.adapter.PlayerSeasonStatusAdapter
 import com.tyhoo.nba.databinding.FragmentPlayerDetailBinding
 import com.tyhoo.nba.viewmodel.PlayerDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,16 +38,24 @@ class PlayerDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        playerDetailJob?.cancel()
-        playerDetailJob = lifecycleScope.launch {
-            playerDetailViewModel.player(args.playerCode).observe(viewLifecycleOwner) { player ->
-                playerDetailBinding.payload = player.payload
-            }
-        }
+        val playerSeasonStatusAdapter = PlayerSeasonStatusAdapter()
+        playerDetailBinding.playerSeasonStatusList.adapter = playerSeasonStatusAdapter
+
+        subscribeUi(playerSeasonStatusAdapter)
     }
 
     override fun onDestroyView() {
         playerDetailJob?.cancel()
         super.onDestroyView()
+    }
+
+    private fun subscribeUi(playerSeasonStatusAdapter: PlayerSeasonStatusAdapter) {
+        playerDetailJob?.cancel()
+        playerDetailJob = lifecycleScope.launch {
+            playerDetailViewModel.player(args.playerCode).observe(viewLifecycleOwner) { player ->
+                playerDetailBinding.payload = player.payload
+                playerSeasonStatusAdapter.submitList(playerDetailViewModel.seasonStatusList(player))
+            }
+        }
     }
 }
