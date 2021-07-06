@@ -128,7 +128,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PPG"
+                        android:text="@string/player_detail_ppg"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -158,7 +158,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="RPG"
+                        android:text="@string/player_detail_rpg"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -188,7 +188,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="APG"
+                        android:text="@string/player_detail_apg"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -218,7 +218,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PIE"
+                        android:text="@string/player_detail_pie"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
