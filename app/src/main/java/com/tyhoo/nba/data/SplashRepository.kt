@@ -16,17 +16,17 @@ class SplashRepository @Inject constructor(private val service: NBAService) {
             val response = service.players()
             val playersResponse = response.payload.players
 
-            for (i in playersResponse.indices) {
+            playersResponse.mapIndexed { i, playerResponse ->
                 players.add(
                     PlayersEntity(
                         i,
-                        playersResponse[i].playerProfile.code,
-                        playersResponse[i].playerProfile.displayName,
-                        playersResponse[i].playerProfile.jerseyNo,
-                        playersResponse[i].playerProfile.playerId,
-                        playersResponse[i].playerProfile.position,
-                        playersResponse[i].teamProfile.city,
-                        playersResponse[i].teamProfile.name
+                        playerResponse.playerProfile.code,
+                        playerResponse.playerProfile.displayName,
+                        playerResponse.playerProfile.jerseyNo,
+                        playerResponse.playerProfile.playerId,
+                        playerResponse.playerProfile.position,
+                        playerResponse.teamProfile.city,
+                        playerResponse.teamProfile.name
                     )
                 )
             }
