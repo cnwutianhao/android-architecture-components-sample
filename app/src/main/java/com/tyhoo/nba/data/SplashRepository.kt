@@ -32,6 +32,11 @@ class SplashRepository @Inject constructor(private val service: NBAService) {
             }
 
             val database = PlayersDatabase.getInstance(context)
+
+            //
+            database.playerDao().deletePlayerList()
+
+            //
             database.playerDao().insertPlayerList(players)
 
             return true
@@ -84,6 +89,11 @@ class SplashRepository @Inject constructor(private val service: NBAService) {
             }
 
             val database = TeamsDatabase.getInstance(context)
+
+            //
+            database.teamDao().deleteTeamList()
+
+            //
             database.teamDao().insertTeamList(teams)
 
             return true

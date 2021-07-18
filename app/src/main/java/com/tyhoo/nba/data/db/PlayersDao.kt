@@ -13,4 +13,7 @@ interface PlayersDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPlayerList(players: List<PlayersEntity>)
+
+    @Query("DELETE FROM players")
+    suspend fun deletePlayerList()
 }

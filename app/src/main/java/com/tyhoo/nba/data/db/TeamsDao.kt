@@ -13,4 +13,7 @@ interface TeamsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTeamList(teams: List<TeamsEntity>)
+
+    @Query("DELETE FROM teams")
+    suspend fun deleteTeamList()
 }
