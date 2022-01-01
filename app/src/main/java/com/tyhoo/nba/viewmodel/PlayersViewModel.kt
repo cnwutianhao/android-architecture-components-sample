@@ -1,8 +1,7 @@
 package com.tyhoo.nba.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.*
+import com.tyhoo.nba.adapter.PlayersAdapter
 import com.tyhoo.nba.data.PlayersRepository
 import com.tyhoo.nba.data.db.PlayersEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,5 +11,18 @@ import javax.inject.Inject
 class PlayersViewModel @Inject constructor(
     playersRepository: PlayersRepository
 ) : ViewModel() {
-    val players: LiveData<List<PlayersEntity>> = playersRepository.getPlayers().asLiveData()
+
+    fun requestData(owner: LifecycleOwner, playersAdapter: PlayersAdapter) {
+        playersObserver(owner, playersAdapter)
+    }
+
+    private fun playersObserver(
+        owner: LifecycleOwner, playersAdapter: PlayersAdapter
+    ) = Observer<List<PlayersEntity>> { players ->
+        playersAdapter.submitList(players)
+    }.apply {
+        players.observe(owner, this)
+    }
+
+    private val players: LiveData<List<PlayersEntity>> = playersRepository.getPlayers().asLiveData()
 }

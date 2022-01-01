@@ -5,9 +5,15 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
-            name="team"
-            type="com.tyhoo.nba.data.teamstanding.TeamStandingTeamResponse" />
+            name="viewModel"
+            type="com.tyhoo.nba.viewmodel.TeamDetailViewModel" />
+
+        <!--        <variable-->
+        <!--            name="team"-->
+        <!--            type="com.tyhoo.nba.data.teamstanding.TeamStandingTeamResponse" />-->
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -17,7 +23,7 @@
         android:clipToPadding="true"
         android:fitsSystemWindows="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:teamDetailBackgroundFromTeamCode="@{team.profile.code}"
+        app:teamDetailBackgroundFromTeamCode="@{viewModel.payloadTeam.profile.code}"
         tools:background="@color/black">
 
         <LinearLayout
@@ -35,7 +41,7 @@
                     android:layout_width="125dp"
                     android:layout_height="125dp"
                     android:layout_margin="16dp"
-                    app:teamDetailImageFromTeamCode="@{team.profile.code}" />
+                    app:teamDetailImageFromTeamCode="@{viewModel.payloadTeam.profile.code}" />
 
                 <TextView
                     android:id="@+id/team_detail_name"
@@ -43,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_toEndOf="@id/team_detail_image"
-                    android:text="@{team.profile.city + team.profile.name}"
+                    android:text="@{viewModel.payloadTeam.profile.city + viewModel.payloadTeam.profile.name}"
                     android:textColor="@color/white"
                     android:textSize="30sp"
                     android:textStyle="bold"
@@ -56,7 +62,7 @@
                     android:layout_below="@id/team_detail_name"
                     android:layout_marginTop="16dp"
                     android:layout_toEndOf="@id/team_detail_image"
-                    android:text="@{String.format(@string/team_detail_win_loss,team.standings.wins,team.standings.losses)}"
+                    android:text="@{String.format(@string/team_detail_win_loss,viewModel.payloadTeam.standings.wins,viewModel.payloadTeam.standings.losses)}"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     tools:text="胜 41 败 31" />
@@ -68,7 +74,7 @@
                     android:layout_below="@id/team_detail_win_loss"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/team_detail_image"
-                    android:text="@{String.format(@string/team_detail_conference_rank,team.profile.displayConference,team.standings.confRank)}"
+                    android:text="@{String.format(@string/team_detail_conference_rank,viewModel.payloadTeam.profile.displayConference,viewModel.payloadTeam.standings.confRank)}"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     tools:text="东部第 5 名" />
@@ -97,14 +103,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PPG"
+                        android:text="@string/team_detail_ppg"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{team.rank.ppg}"
+                        android:text="@{viewModel.payloadTeam.rank.ppg}"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -127,14 +133,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="RPG"
+                        android:text="@string/team_detail_rpg"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{team.rank.rpg}"
+                        android:text="@{viewModel.payloadTeam.rank.rpg}"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -157,14 +163,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="APG"
+                        android:text="@string/team_detail_apg"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{team.rank.apg}"
+                        android:text="@{viewModel.payloadTeam.rank.apg}"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -187,14 +193,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="OPPG"
+                        android:text="@string/team_detail_oppg"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{team.rank.oppg}"
+                        android:text="@{viewModel.payloadTeam.rank.oppg}"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"

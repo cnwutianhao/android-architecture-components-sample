@@ -44,6 +44,7 @@ fun bindImageFromCode(view: ImageView, code: String?) {
         }
 
         GlideApp.with(view.context)
+            .asDrawable()
             .load(teamLogo)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(view)

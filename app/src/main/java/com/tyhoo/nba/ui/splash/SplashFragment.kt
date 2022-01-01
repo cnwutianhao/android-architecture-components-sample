@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import com.tyhoo.nba.databinding.FragmentSplashBinding
 import com.tyhoo.nba.viewmodel.SplashViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SplashFragment : Fragment() {
@@ -28,14 +26,18 @@ class SplashFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Bind layout views to Architecture Components.
+        // https://developer.android.com/topic/libraries/data-binding/architecture
         splashBinding = FragmentSplashBinding.inflate(inflater, container, false)
+        splashBinding.lifecycleOwner = viewLifecycleOwner
+        splashBinding.viewModel = splashViewModel
+
         return splashBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        getPlayers()
+        requestData()
     }
 
     override fun onDestroyView() {
@@ -43,22 +45,10 @@ class SplashFragment : Fragment() {
         super.onDestroyView()
     }
 
-    private fun getPlayers() {
+    private fun requestData() {
         splashJob?.cancel()
-        splashJob = lifecycleScope.launch {
-            if (splashViewModel.getPlayers(requireContext())) {
-                getTeams()
-            }
-        }
-    }
-
-    private fun getTeams() {
-        splashJob?.cancel()
-        splashJob = lifecycleScope.launch {
-            if (splashViewModel.getTeams(requireContext())) {
-                val direction = SplashFragmentDirections.actionSplashFragmentToHomeFragment()
-                view?.findNavController()?.navigate(direction)
-            }
+        splashJob = lifecycleScope.launchWhenResumed {
+            splashViewModel.requestData(requireContext(), viewLifecycleOwner, view)
         }
     }
 }

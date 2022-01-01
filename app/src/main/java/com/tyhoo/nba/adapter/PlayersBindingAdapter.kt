@@ -11,6 +11,7 @@ fun bindImageFromPlayerId(view: ImageView, playerId: String?) {
     val imageUrl = "https://china.nba.com/media/img/players/head/260x190/$playerId.png"
 
     GlideApp.with(view.context)
+        .asDrawable()
         .load(imageUrl)
         .transition(DrawableTransitionOptions.withCrossFade())
         .into(view)

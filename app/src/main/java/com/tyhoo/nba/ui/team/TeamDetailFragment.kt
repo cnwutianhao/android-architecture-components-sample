@@ -12,7 +12,6 @@ import com.tyhoo.nba.databinding.FragmentTeamDetailBinding
 import com.tyhoo.nba.viewmodel.TeamDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class TeamDetailFragment : Fragment() {
@@ -30,24 +29,29 @@ class TeamDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Bind layout views to Architecture Components.
+        // https://developer.android.com/topic/libraries/data-binding/architecture
         teamDetailBinding = FragmentTeamDetailBinding.inflate(inflater, container, false)
+        teamDetailBinding.lifecycleOwner = viewLifecycleOwner
+        teamDetailBinding.viewModel = teamDetailViewModel
+
         return teamDetailBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        teamDetailJob?.cancel()
-        teamDetailJob = lifecycleScope.launch {
-            teamDetailViewModel.teamStanding(args.teamCode)
-                .observe(viewLifecycleOwner) { teamStanding ->
-                    teamDetailBinding.team = teamStanding.payload.team
-                }
-        }
+        requestData()
     }
 
     override fun onDestroyView() {
         teamDetailJob?.cancel()
         super.onDestroyView()
+    }
+
+    private fun requestData() {
+        teamDetailJob?.cancel()
+        teamDetailJob = lifecycleScope.launchWhenResumed {
+            teamDetailViewModel.requestData(viewLifecycleOwner, args.teamCode)
+        }
     }
 }

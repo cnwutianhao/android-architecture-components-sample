@@ -13,7 +13,6 @@ import com.tyhoo.nba.databinding.FragmentPlayerDetailBinding
 import com.tyhoo.nba.viewmodel.PlayerDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class PlayerDetailFragment : Fragment() {
@@ -26,22 +25,26 @@ class PlayerDetailFragment : Fragment() {
 
     private val playerDetailViewModel: PlayerDetailViewModel by viewModels()
 
+    private lateinit var playerSeasonStatusAdapter: PlayerSeasonStatusAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Bind layout views to Architecture Components.
+        // https://developer.android.com/topic/libraries/data-binding/architecture
         playerDetailBinding = FragmentPlayerDetailBinding.inflate(inflater, container, false)
+        playerDetailBinding.lifecycleOwner = viewLifecycleOwner
+        playerDetailBinding.viewModel = playerDetailViewModel
+
         return playerDetailBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val playerSeasonStatusAdapter = PlayerSeasonStatusAdapter()
-        playerDetailBinding.playerSeasonStatusList.adapter = playerSeasonStatusAdapter
-
-        subscribeUi(playerSeasonStatusAdapter)
+        subscribeUI()
+        requestData()
     }
 
     override fun onDestroyView() {
@@ -49,13 +52,17 @@ class PlayerDetailFragment : Fragment() {
         super.onDestroyView()
     }
 
-    private fun subscribeUi(playerSeasonStatusAdapter: PlayerSeasonStatusAdapter) {
+    private fun subscribeUI() {
+        playerSeasonStatusAdapter = PlayerSeasonStatusAdapter()
+        playerDetailBinding.playerSeasonStatusList.adapter = playerSeasonStatusAdapter
+    }
+
+    private fun requestData() {
         playerDetailJob?.cancel()
-        playerDetailJob = lifecycleScope.launch {
-            playerDetailViewModel.player(args.playerCode).observe(viewLifecycleOwner) { player ->
-                playerDetailBinding.payload = player.payload
-                playerSeasonStatusAdapter.submitList(playerDetailViewModel.seasonStatusList(player))
-            }
+        playerDetailJob = lifecycleScope.launchWhenResumed {
+            playerDetailViewModel.requestData(
+                viewLifecycleOwner, args.playerCode, playerSeasonStatusAdapter
+            )
         }
     }
 }

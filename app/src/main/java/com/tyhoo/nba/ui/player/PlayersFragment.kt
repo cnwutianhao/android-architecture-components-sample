@@ -13,7 +13,6 @@ import com.tyhoo.nba.databinding.FragmentPlayersBinding
 import com.tyhoo.nba.viewmodel.PlayersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class PlayersFragment : Fragment() {
@@ -23,6 +22,8 @@ class PlayersFragment : Fragment() {
     private var playersJob: Job? = null
 
     private val playersViewModel: PlayersViewModel by viewModels()
+
+    private lateinit var playersAdapter: PlayersAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,13 +36,8 @@ class PlayersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val playersAdapter = PlayersAdapter()
-        playersBinding.playerList.addItemDecoration(
-            DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
-        )
-        playersBinding.playerList.adapter = playersAdapter
-        subscribeUi(playersAdapter)
+        subscribeUI()
+        requestData()
     }
 
     override fun onDestroyView() {
@@ -49,12 +45,18 @@ class PlayersFragment : Fragment() {
         super.onDestroyView()
     }
 
-    private fun subscribeUi(adapter: PlayersAdapter) {
+    private fun subscribeUI() {
+        playersAdapter = PlayersAdapter()
+        playersBinding.playerList.addItemDecoration(
+            DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
+        )
+        playersBinding.playerList.adapter = playersAdapter
+    }
+
+    private fun requestData() {
         playersJob?.cancel()
-        playersJob = lifecycleScope.launch {
-            playersViewModel.players.observe(viewLifecycleOwner) { players ->
-                adapter.submitList(players)
-            }
+        playersJob = lifecycleScope.launchWhenResumed {
+            playersViewModel.requestData(viewLifecycleOwner, playersAdapter)
         }
     }
 }

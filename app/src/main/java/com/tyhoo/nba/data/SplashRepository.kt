@@ -1,6 +1,8 @@
 package com.tyhoo.nba.data
 
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.tyhoo.nba.api.NBAService
 import com.tyhoo.nba.data.db.PlayersDatabase
 import com.tyhoo.nba.data.db.PlayersEntity
@@ -10,43 +12,38 @@ import javax.inject.Inject
 
 class SplashRepository @Inject constructor(private val service: NBAService) {
 
-    suspend fun getPlayers(context: Context): Boolean {
-        try {
+    suspend fun getPlayers(context: Context): LiveData<Boolean> {
+        val playersResponse = MutableLiveData<Boolean>()
+        return try {
             val players: MutableList<PlayersEntity> = mutableListOf()
             val response = service.players()
-            val playersResponse = response.payload.players
-
-            playersResponse.mapIndexed { i, playerResponse ->
+            val payloadPlayers = response.payload.players
+            payloadPlayers.mapIndexed { i, player ->
                 players.add(
                     PlayersEntity(
-                        i,
-                        playerResponse.playerProfile.code,
-                        playerResponse.playerProfile.displayName,
-                        playerResponse.playerProfile.jerseyNo,
-                        playerResponse.playerProfile.playerId,
-                        playerResponse.playerProfile.position,
-                        playerResponse.teamProfile.city,
-                        playerResponse.teamProfile.name
+                        i, player.playerProfile.code, player.playerProfile.displayName,
+                        player.playerProfile.jerseyNo, player.playerProfile.playerId,
+                        player.playerProfile.position, player.teamProfile.city,
+                        player.teamProfile.name
                     )
                 )
             }
 
             val database = PlayersDatabase.getInstance(context)
-
-            //
             database.playerDao().deletePlayerList()
-
-            //
             database.playerDao().insertPlayerList(players)
 
-            return true
+            playersResponse.postValue(true)
+            playersResponse
         } catch (e: Exception) {
-            return false
+            playersResponse.postValue(false)
+            playersResponse
         }
     }
 
-    suspend fun getTeams(context: Context): Boolean {
-        try {
+    suspend fun getTeams(context: Context): LiveData<Boolean> {
+        val teamsResponse = MutableLiveData<Boolean>()
+        return try {
             val teams: MutableList<TeamsEntity> = mutableListOf()
             val response = service.teams()
             val easternTeamsResponse = response.payload.listGroups[0].teams
@@ -89,16 +86,14 @@ class SplashRepository @Inject constructor(private val service: NBAService) {
             }
 
             val database = TeamsDatabase.getInstance(context)
-
-            //
             database.teamDao().deleteTeamList()
-
-            //
             database.teamDao().insertTeamList(teams)
 
-            return true
+            teamsResponse.postValue(true)
+            teamsResponse
         } catch (e: Exception) {
-            return false
+            teamsResponse.postValue(false)
+            teamsResponse
         }
     }
 }

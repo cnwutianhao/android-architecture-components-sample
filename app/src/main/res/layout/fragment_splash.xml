@@ -2,6 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.tyhoo.nba.viewmodel.SplashViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -19,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/splash_load_text"
+            android:text="@{viewModel.loadingContent}"
             app:layout_constraintEnd_toEndOf="@+id/splash_progress"
             app:layout_constraintStart_toStartOf="@+id/splash_progress"
             app:layout_constraintTop_toBottomOf="@+id/splash_progress" />

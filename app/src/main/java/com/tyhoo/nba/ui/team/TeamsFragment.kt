@@ -13,7 +13,6 @@ import com.tyhoo.nba.databinding.FragmentTeamsBinding
 import com.tyhoo.nba.viewmodel.TeamsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class TeamsFragment : Fragment() {
@@ -23,6 +22,8 @@ class TeamsFragment : Fragment() {
     private var teamsJob: Job? = null
 
     private val teamsViewModel: TeamsViewModel by viewModels()
+
+    private lateinit var teamsAdapter: TeamsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,13 +36,8 @@ class TeamsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val teamsAdapter = TeamsAdapter()
-        teamsBinding.teamList.addItemDecoration(
-            DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
-        )
-        teamsBinding.teamList.adapter = teamsAdapter
-        subscribeUi(teamsAdapter)
+        subscribeUI()
+        requestData()
     }
 
     override fun onDestroyView() {
@@ -49,12 +45,18 @@ class TeamsFragment : Fragment() {
         super.onDestroyView()
     }
 
-    private fun subscribeUi(adapter: TeamsAdapter) {
+    private fun subscribeUI() {
+        teamsAdapter = TeamsAdapter()
+        teamsBinding.teamList.addItemDecoration(
+            DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
+        )
+        teamsBinding.teamList.adapter = teamsAdapter
+    }
+
+    private fun requestData() {
         teamsJob?.cancel()
-        teamsJob = lifecycleScope.launch {
-            teamsViewModel.teams.observe(viewLifecycleOwner) { teams ->
-                adapter.submitList(teams)
-            }
+        teamsJob = lifecycleScope.launchWhenResumed {
+            teamsViewModel.requestData(viewLifecycleOwner, teamsAdapter)
         }
     }
 }

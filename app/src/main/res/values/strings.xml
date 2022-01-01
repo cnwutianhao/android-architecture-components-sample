@@ -2,6 +2,8 @@
     <string name="app_name">NBA</string>
 
     <string name="splash_load_text">数据加载中…</string>
+    <string name="splash_load_players">正在加载球员数据</string>
+    <string name="splash_load_teams">正在加载球队数据</string>
 
     <string name="players_jersey_number">%s号</string>
 
@@ -12,7 +14,13 @@
     <string name="player_detail_rpg">篮板</string>
     <string name="player_detail_apg">助攻</string>
     <string name="player_detail_pie">贡献</string>
+    <string name="player_detail_unknown">N/A</string>
 
     <string name="team_detail_win_loss">胜 %s 败 %s</string>
     <string name="team_detail_conference_rank">%s第 %s 名</string>
+    <string name="team_detail_ppg">PPG</string>
+    <string name="team_detail_rpg">RPG</string>
+    <string name="team_detail_apg">APG</string>
+    <string name="team_detail_oppg">OPPG</string>
+
 </resources>

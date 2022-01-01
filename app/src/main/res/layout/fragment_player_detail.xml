@@ -5,9 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
-            name="payload"
-            type="com.tyhoo.nba.data.player.PlayerPayloadResponse" />
+            name="viewModel"
+            type="com.tyhoo.nba.viewmodel.PlayerDetailViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -17,7 +19,7 @@
         android:clipToPadding="true"
         android:fitsSystemWindows="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:playerDetailBackgroundFromTeamCode="@{payload.player.teamProfile.code}"
+        app:playerDetailBackgroundFromTeamCode="@{viewModel.payload.player.teamProfile.code}"
         tools:background="@color/black">
 
         <LinearLayout
@@ -38,7 +40,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    app:playerDetailImageFromPlayerId="@{payload.player.playerProfile.playerId}" />
+                    app:playerDetailImageFromPlayerId="@{viewModel.payload.player.playerProfile.playerId}" />
 
                 <TextView
                     android:id="@+id/player_detail_team"
@@ -48,7 +50,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@+id/player_detail_image"
-                    android:text="@{payload.player.teamProfile.city + payload.player.teamProfile.name}"
+                    android:text="@{viewModel.payload.player.teamProfile.city + viewModel.payload.player.teamProfile.name}"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     tools:text="洛杉矶湖人" />
@@ -60,7 +62,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@+id/player_detail_team"
-                    android:text="@{String.format(@string/player_detail_jersey_number,payload.player.playerProfile.jerseyNo)}"
+                    android:text="@{String.format(@string/player_detail_jersey_number,viewModel.payload.player.playerProfile.jerseyNo)}"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     tools:text="  |  23号" />
@@ -72,7 +74,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@+id/player_detail_jersey_no"
-                    android:text="@{String.format(@string/player_detail_position,payload.player.playerProfile.position)}"
+                    android:text="@{String.format(@string/player_detail_position,viewModel.payload.player.playerProfile.position)}"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     tools:text="  |  前锋" />
@@ -85,7 +87,7 @@
                     android:layout_marginStart="6dp"
                     android:layout_marginTop="16dp"
                     android:layout_toEndOf="@+id/player_detail_image"
-                    android:text="@{payload.player.playerProfile.firstName}"
+                    android:text="@{viewModel.payload.player.playerProfile.firstName}"
                     android:textColor="@color/white"
                     android:textSize="30sp"
                     android:textStyle="bold"
@@ -98,7 +100,7 @@
                     android:layout_below="@+id/player_detail_first_name"
                     android:layout_marginStart="6dp"
                     android:layout_toEndOf="@+id/player_detail_image"
-                    android:text="@{payload.player.playerProfile.lastName}"
+                    android:text="@{viewModel.payload.player.playerProfile.lastName}"
                     android:textColor="@color/white"
                     android:textSize="26sp"
                     android:textStyle="bold"
@@ -138,7 +140,7 @@
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        app:playerDetailPointsPg="@{payload}"
+                        app:playerDetailPointsPg="@{viewModel.payload}"
                         tools:text="25.0" />
 
                 </LinearLayout>
@@ -168,7 +170,7 @@
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        app:playerDetailRebsPg="@{payload}"
+                        app:playerDetailRebsPg="@{viewModel.payload}"
                         tools:text="7.7" />
 
                 </LinearLayout>
@@ -198,7 +200,7 @@
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        app:playerDetailAssistsPg="@{payload}"
+                        app:playerDetailAssistsPg="@{viewModel.payload}"
                         tools:text="7.8" />
 
                 </LinearLayout>
@@ -225,7 +227,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="N/A"
+                        android:text="@string/player_detail_unknown"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -245,7 +247,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:padding="16dp"
-                android:text="@{String.format(@string/player_detail_height_weight,payload.player.playerProfile.height,payload.player.playerProfile.weight)}"
+                android:text="@{String.format(@string/player_detail_height_weight,viewModel.payload.player.playerProfile.height,viewModel.payload.player.playerProfile.weight)}"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 tools:text="身高：2.06 米，体重：113.4 公斤" />
