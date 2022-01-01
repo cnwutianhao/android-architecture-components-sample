@@ -7,8 +7,8 @@ import com.tyhoo.nba.util.GlideApp
 
 @BindingAdapter("imageFromPlayerId")
 fun bindImageFromPlayerId(view: ImageView, playerId: String?) {
-    // https://china.nba.com/media/img/players/head/260x190/2544.png
-    val imageUrl = "https://china.nba.com/media/img/players/head/260x190/$playerId.png"
+    // https://china.nba.cn/media/img/players/head/260x190/2544.png
+    val imageUrl = "https://china.nba.cn/media/img/players/head/260x190/$playerId.png"
 
     GlideApp.with(view.context)
         .asDrawable()

@@ -9,48 +9,48 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface NBAService {
 
     /**
-     * https://china.nba.com/static/data/league/playerlist.json
+     * https://china.nba.cn/stats2/league/playerlist.json
      */
-    @GET("static/data/league/playerlist.json")
+    @GET("stats2/league/playerlist.json")
     suspend fun players(): PlayersResponse
 
     /**
-     * https://china.nba.com/static/data/player/stats_lebron_james.json
+     * https://china.nba.cn/stats2/player/stats.json?playerCode=lebron_james
      */
-    @GET("static/data/player/stats_{code}.json")
-    suspend fun player(@Path("code") code: String): PlayerResponse
+    @GET("stats2/player/stats.json")
+    suspend fun player(@Query("playerCode") playerCode: String): PlayerResponse
 
     /**
-     * https://china.nba.com/static/data/league/conferenceteamlist.json
+     * https://china.nba.cn/stats2/league/conferenceteamlist.json
      */
-    @GET("static/data/league/conferenceteamlist.json")
+    @GET("stats2/league/conferenceteamlist.json")
     suspend fun teams(): TeamsResponse
 
     /**
-     * https://china.nba.com/static/data/team/standing_hawks.json
+     * https://china.nba.cn/stats2/team/standing.json?teamCode=hawks
      */
-    @GET("static/data/team/standing_{code}.json")
-    suspend fun teamStanding(@Path("code") code: String): TeamStandingResponse
+    @GET("stats2/team/standing.json")
+    suspend fun teamStanding(@Query("teamCode") teamCode: String): TeamStandingResponse
 
     /**
-     * https://china.nba.com/static/data/team/schedule_hawks.json
+     * https://china.nba.cn/stats2/team/schedule.json?teamCode=hawks
      */
-    @GET("static/data/team/schedule_{code}.json")
-    suspend fun teamSchedule(@Path("code") code: String)
+    @GET("stats2/team/schedule.json")
+    suspend fun teamSchedule(@Query("teamCode") teamCode: String)
 
     /**
-     * https://china.nba.com/static/data/team/leader_hawks.json
+     * https://china.nba.cn/stats2/team/leader.json?teamCode=hawks
      */
-    @GET("static/data/team/leader_{code}.json")
-    suspend fun teamLeader(@Path("code") code: String)
+    @GET("stats2/team/leader.json")
+    suspend fun teamLeader(@Query("teamCode") teamCode: String)
 
     companion object {
-        private const val BASE_URL = "https://china.nba.com/"
+        private const val BASE_URL = "https://china.nba.cn/"
 
         fun create(): NBAService {
             val logger =
