@@ -9,7 +9,7 @@ import com.tyhoo.nba.R
 import com.tyhoo.nba.data.player.PlayerPayloadResponse
 import com.tyhoo.nba.util.GlideApp
 
-@BindingAdapter("playerDetailImageFromPlayerId")
+@BindingAdapter(value = ["playerDetailImageFromPlayerId"])
 fun bindPlayerDetailImageFromPlayerId(view: ImageView, playerId: String?) {
     // https://china.nba.cn/media/img/players/head/260x190/2544.png
     val imageUrl = "https://china.nba.cn/media/img/players/head/260x190/$playerId.png"
@@ -20,7 +20,7 @@ fun bindPlayerDetailImageFromPlayerId(view: ImageView, playerId: String?) {
         .into(view)
 }
 
-@BindingAdapter("playerDetailBackgroundFromTeamCode")
+@BindingAdapter(value = ["playerDetailBackgroundFromTeamCode"])
 fun bindPlayerDetailBackgroundFromTeamCode(view: View, code: String?) {
     code?.let {
         var color: Int = R.color.white
@@ -60,7 +60,7 @@ fun bindPlayerDetailBackgroundFromTeamCode(view: View, code: String?) {
     }
 }
 
-@BindingAdapter("app:playerDetailPointsPg")
+@BindingAdapter(value = ["playerDetailPointsPg"])
 fun bindPlayerDetailPointsPg(view: TextView, payload: PlayerPayloadResponse?) {
     payload?.let {
         val teams = it.player.stats.regularSeasonStat.playerTeams
@@ -71,7 +71,7 @@ fun bindPlayerDetailPointsPg(view: TextView, payload: PlayerPayloadResponse?) {
     }
 }
 
-@BindingAdapter("app:playerDetailRebsPg")
+@BindingAdapter(value = ["playerDetailRebsPg"])
 fun bindPlayerDetailRebsPg(view: TextView, payload: PlayerPayloadResponse?) {
     payload?.let {
         val teams = it.player.stats.regularSeasonStat.playerTeams
@@ -82,7 +82,7 @@ fun bindPlayerDetailRebsPg(view: TextView, payload: PlayerPayloadResponse?) {
     }
 }
 
-@BindingAdapter("app:playerDetailAssistsPg")
+@BindingAdapter(value = ["playerDetailAssistsPg"])
 fun bindPlayerDetailAssistsPg(view: TextView, payload: PlayerPayloadResponse?) {
     payload?.let {
         val teams = it.player.stats.regularSeasonStat.playerTeams
@@ -93,7 +93,7 @@ fun bindPlayerDetailAssistsPg(view: TextView, payload: PlayerPayloadResponse?) {
     }
 }
 
-@BindingAdapter("app:playerDetailFloatFormat")
+@BindingAdapter(value = ["playerDetailFloatFormat"])
 fun bindPlayerDetailFloatFormat(view: TextView, data: Float?) {
     data?.let {
         view.text = String.format("%.1f", data)

@@ -6,7 +6,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.tyhoo.nba.R
 import com.tyhoo.nba.util.GlideApp
 
-@BindingAdapter("imageFromCode")
+@BindingAdapter(value = ["imageFromCode"])
 fun bindImageFromCode(view: ImageView, code: String?) {
     code?.let {
         var teamLogo: Int = R.drawable.logo_lakers

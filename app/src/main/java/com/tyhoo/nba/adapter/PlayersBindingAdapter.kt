@@ -5,7 +5,7 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.tyhoo.nba.util.GlideApp
 
-@BindingAdapter("imageFromPlayerId")
+@BindingAdapter(value = ["imageFromPlayerId"])
 fun bindImageFromPlayerId(view: ImageView, playerId: String?) {
     // https://china.nba.cn/media/img/players/head/260x190/2544.png
     val imageUrl = "https://china.nba.cn/media/img/players/head/260x190/$playerId.png"

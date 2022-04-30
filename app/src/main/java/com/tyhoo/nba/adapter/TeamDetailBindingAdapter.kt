@@ -7,7 +7,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.tyhoo.nba.R
 import com.tyhoo.nba.util.GlideApp
 
-@BindingAdapter("app:teamDetailBackgroundFromTeamCode")
+@BindingAdapter(value = ["teamDetailBackgroundFromTeamCode"])
 fun bindTeamDetailBackgroundFromTeamCode(view: View, code: String?) {
     code?.let {
         var color: Int = R.color.white
@@ -47,7 +47,7 @@ fun bindTeamDetailBackgroundFromTeamCode(view: View, code: String?) {
     }
 }
 
-@BindingAdapter("app:teamDetailImageFromTeamCode")
+@BindingAdapter(value = ["teamDetailImageFromTeamCode"])
 fun bindTeamDetailImageFromTeamCode(view: ImageView, code: String?) {
     code?.let {
         var teamLogo: Int = R.drawable.logo_lakers
