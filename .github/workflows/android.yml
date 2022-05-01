@@ -24,8 +24,9 @@ jobs:
       run: ./gradlew build
     - name: Build Release APK
       run: ./gradlew assembleRelease
-    - name: Releasing using Hub
-      uses: cnwutianhao/android-architecture-components-sample@main
-      env:
-       GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
-       APP_FOLDER: app
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: release.apk
+        path: 
+          app/**/apk/release/*
